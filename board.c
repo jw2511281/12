@@ -1,10 +1,6 @@
 #if 0
-int  board_initBoard(void);
-int  board_getBoardStatus(int pos);
 int  board_getSharkPosition(void);
 int  board_stepShark(void);
-int  board_getBoardCoin(int pos);
-void  board_printBoardStatus(void);
 #endif
 
 #define N_BOARD                    20
@@ -20,8 +16,8 @@ static int  shark_position;
 void board_printBoardStatus(void)
 {
      int i;
-     printf("============== BOARD STATUS ================");
-     for (i=0; i<N_BOARD; i++);
+     printf("============== BOARD STATUS ================\n");
+     for (i=0; i<N_BOARD; i++)
      {
          printf("|");
          if (board_status[i] == BOARDSTATUS_NOK)
@@ -29,7 +25,7 @@ void board_printBoardStatus(void)
          else
              printf("O");
              }
-     ptintf("|\n");
+     printf("|\n");
      printf("============================================");
      
 }
@@ -51,7 +47,7 @@ int board_initBoard(void)
              board_status[i]= BOARDSTATUS_OK;
              board_coin[i]=0;
              }
-    for(i=0; i<N_COINPOS; i++);
+    for(i=0; i<N_COINPOS; i++)
     {
              int flag_allocated=0;
              do {
