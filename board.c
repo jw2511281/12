@@ -1,16 +1,31 @@
 #if 0
 int  board_getSharkPosition(void);
-int  board_stepShark(void);
 #endif
 
 #include "board.h"
 
 #define N_COINPOS                  12
 #define MAX_COIN                   4
+#define MAX_SHARKSTEP              6
+#define SHARK_INITPOS              -2
 
 static int  board_status[N_BOARD];
 static int  board_coin[N_BOARD];
 static int  shark_position;
+
+int  board_stepShark(void)
+{
+     int step = rand()%MAX_SHARKSTEP+1;
+     int i;
+     for (i=0; i<step; i++)
+     {
+         int posIdx = shark_position + i + 1;
+         if (posIdx >= 0)
+             board_status[posIdx]=BOARDSTATUS_NOK;
+         }
+     shark_position += step;
+     return shark_position;
+}
 
 void board_printBoardStatus(void)
 {
@@ -33,7 +48,7 @@ void board_printBoardStatus(void)
          printf("|%i", board_coin[i]);
              }
      printf("|\n");
-     printf("============================================");
+     printf("============================================\n");
      
 }
 
@@ -50,6 +65,8 @@ int board_getBoardCoin(int pos)
 int board_initBoard(void)
 {
     int i;
+    shark_position = SHARK_INITPOS;
+    
     for(i=0; i<N_BOARD; i++){
              board_status[i]= BOARDSTATUS_OK;
              board_coin[i]=0;
