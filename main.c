@@ -100,7 +100,13 @@ int main(int argc, char *argv[])
   
   do {
      int die_result;
-      
+     
+     if (player_status[turn] != PLAYERSTATUS_LIVE)
+     {
+        turn = (turn+1) % N_PLAYER;
+        continue;
+        }
+        
      // 2-1. status printing
      board_printBoardStatus();
      //player status(°¢ÀÚ) 
