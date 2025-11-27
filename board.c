@@ -3,9 +3,8 @@ int  board_getSharkPosition(void);
 int  board_stepShark(void);
 #endif
 
-#define N_BOARD                    20
-#define BOARDSTATUS_OK             1
-#define BOARDSTATUS_NOK            0
+#include "board.h"
+
 #define N_COINPOS                  12
 #define MAX_COIN                   4
 
@@ -24,6 +23,14 @@ void board_printBoardStatus(void)
             printf("X");
          else
              printf("O");
+             }
+     printf("|\n");
+     printf("============================================\n\n");
+     
+     printf("============== BOARD coin ==================\n");
+     for (i=0; i<N_BOARD; i++)
+     {
+         printf("|%i", board_coin[i]);
              }
      printf("|\n");
      printf("============================================");
